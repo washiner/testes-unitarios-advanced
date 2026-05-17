@@ -47,6 +47,25 @@ public class ProdutoTestes {
 
         assertThat(resultado).isNotEmpty();
     }
+
+    @Test
+    void deveRetornarNullQuandoProdutoNaoExiste() {
+
+        String resultado = estoque.buscarProduto("Cadeira");
+
+        // VERIFICA SE VEIO NULO
+        assertThat(resultado).isNull();
+    }
+
+    @Test
+    void deveAcharProdutoQueExiste() {
+
+        String resultado = estoque.buscarProduto("Mouse");
+
+        // VERIFICA SE NAO E NULO E SE E O CERTO
+        assertThat(resultado).isNotNull();
+        assertThat(resultado).isEqualTo("Mouse");
+    }
 }
 
 
