@@ -14,7 +14,7 @@ public class CalculadoraTestes {
     Calculadora calculadora;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         calculadora = new Calculadora();
     }
 
@@ -31,7 +31,7 @@ public class CalculadoraTestes {
     }
 
     @Test
-    void deveSubtrair(){
+    void deveSubtrair() {
 
 
         // CRIA O OBJETO — nao precisa mais, já existe
@@ -42,7 +42,7 @@ public class CalculadoraTestes {
     }
 
     @Test
-    void deveMultiplicarNumeros(){
+    void deveMultiplicarNumeros() {
 
         // CRIA O OBJETO — nao precisa mais, já existe
         // CHAMA O MÉTODO
@@ -53,7 +53,7 @@ public class CalculadoraTestes {
     }
 
     @Test
-    void deveDividirNumeros(){
+    void deveDividirNumeros() {
 
         // CRIA O OBJETO — nao precisa mais, já existe
         // CHAMA O MÉTODO
@@ -64,15 +64,31 @@ public class CalculadoraTestes {
     }
 
     @Test
-    void deveLancarExcessaoAoDividirPorZero(){
+    void deveLancarExcessaoAoDividirPorZero() {
 
         // CRIA O OBJETO — nao precisa mais, já existe
         // CHAMA O MÉTODO
         // ACT + ASSERT juntos — o act está dentro do assertThatThrownBy
 
-        assertThatThrownBy(()-> calculadora.dividirNumeros(10, 0))
+        assertThatThrownBy(() -> calculadora.dividirNumeros(10, 0))
                 .isInstanceOf(IllegalArgumentException.class);
 
+    }
+
+    @Test
+    void deveRetornarTrueParaNumerosPositivo(){
+
+        boolean resultado = calculadora.ehPositivo(5);
+
+        assertThat(resultado).isTrue();
+    }
+
+    @Test
+    void deveRetornarFalseParaNumerosNegativo(){
+
+        boolean resultado = calculadora.ehPositivo(-3);
+
+        assertThat(resultado).isFalse();
 
     }
 

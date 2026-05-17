@@ -20,4 +20,8 @@ public class Calculadora {
         }
         return a / b;
     }
+
+    public boolean ehPositivo(int numero){
+        return numero > 0;
+    }
 }
