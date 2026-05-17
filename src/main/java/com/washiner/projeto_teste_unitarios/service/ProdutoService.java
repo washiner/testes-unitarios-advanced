@@ -19,4 +19,13 @@ public class ProdutoService {
     public void salvar(Produto produto) {
         repository.save(produto);
     }
+
+    public String buscarNomeComTratamento(Long id){
+        try {
+            Produto produto = repository.findById(id);
+            return produto.getNome();
+        }catch (RuntimeException exception){
+            return "Produto não encontrado";
+        }
+    }
 }

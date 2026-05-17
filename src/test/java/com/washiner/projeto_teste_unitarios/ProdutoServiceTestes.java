@@ -56,6 +56,22 @@ public class ProdutoServiceTestes {
         verify(repository).save(produto);
     }
 
+    @Test
+    void deveRetornarMensagemQuandoRepositoryLancarErro(){
+
+        // ARRANGE — manda o dublê lançar exceção
+        when(repository.findById(1L))
+                .thenThrow(new RuntimeException("Banco fora do ar"));
+
+        //ACT
+
+        String resultado = service.buscarNomeComTratamento(1L);
+
+        //assert
+
+        assertThat(resultado).isEqualTo("Produto não encontrado");
+    }
+
 
 }
 
