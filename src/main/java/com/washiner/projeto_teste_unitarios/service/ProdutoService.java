@@ -28,4 +28,10 @@ public class ProdutoService {
             return "Produto não encontrado";
         }
     }
+
+    public void salvarComDesconto(String nome, double preco) {
+        Produto produto = new Produto(nome);
+        produto.setPreco(preco * 0.9); // aplica 10% de desconto
+        repository.save(produto);
+    }
 }

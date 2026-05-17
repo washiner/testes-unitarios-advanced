@@ -5,6 +5,7 @@ import com.washiner.projeto_teste_unitarios.repository.ProdutoRepository;
 import com.washiner.projeto_teste_unitarios.service.ProdutoService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -72,7 +73,23 @@ public class ProdutoServiceTestes {
         assertThat(resultado).isEqualTo("Produto não encontrado");
     }
 
+    @Test
+    void deveAplicarDescontoAoSalvar() {
 
+        // ARRANGE — cria o captor do tipo Produto
+        ArgumentCaptor<Produto> captor = ArgumentCaptor.forClass(Produto.class);
+
+        // ACT
+        service.salvarComDesconto("Notebook", 1000.0);
+
+        // ASSERT — captura o objeto que foi passado pro save
+        verify(repository).save(captor.capture());
+
+        // inspeciona o objeto capturado
+        Produto produtoSalvo = captor.getValue();
+        assertThat(produtoSalvo.getNome()).isEqualTo("Notebook");
+        assertThat(produtoSalvo.getPreco()).isEqualTo(900.0);
+    }
 }
 
 
