@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)    // avisa o JUnit que vai usar o Mockito
@@ -37,6 +38,22 @@ public class ProdutoServiceTestes {
 
         assertThat(resultado).isEqualTo("Notebook");
 
+    }
+
+    @Test
+    void deveSalvarProduto(){
+
+        //arrange
+
+        Produto produto = new Produto("Notebook");
+
+        //act
+
+        service.salvar(produto);
+
+        // ASSERT — verifica se o save foi chamado com esse produto
+
+        verify(repository).save(produto);
     }
 
 

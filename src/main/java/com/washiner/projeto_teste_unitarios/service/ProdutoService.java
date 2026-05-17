@@ -15,4 +15,8 @@ public class ProdutoService {
         Produto produto = repository.findById(id);
         return produto.getNome();
     }
+
+    public void salvar(Produto produto) {
+        repository.save(produto);
+    }
 }
